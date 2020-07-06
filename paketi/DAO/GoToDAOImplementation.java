@@ -32,11 +32,12 @@ public class GoToDAOImplementation implements GoToDAOInterface   {
 	}
 
 	@Override
-	public ArrayList<Autobus> vracaSatniceAutobusaVeceOdTrenutnogVremena(int brojStanice) throws SQLException{
+	public ArrayList<Autobus> vracaSatniceAutobusaVeceOdTrenutnogVremena(int brojStanice, int brojOdredista) throws SQLException{
 		ArrayList<Autobus> autobusi= new ArrayList<Autobus>();
 		String query;
 		String imePoljaStanice= vracaImePoljaNaOsnovuBrojaStanice( brojStanice);
-		query="SELECT BR_AUTOBUSA,"+imePoljaStanice+" FROM vrijeme_na_stanicama WHERE STR_TO_DATE("+imePoljaStanice+", ' %H:%i:%s') > now()";
+		String imePoljaOdredista= vracaImePoljaNaOsnovuBrojaStanice( brojOdredista);
+		query="SELECT BR_AUTOBUSA,"+imePoljaStanice+","+imePoljaOdredista+" FROM vrijeme_na_stanicama WHERE STR_TO_DATE("+imePoljaStanice+", ' %H:%i:%s') > now()";
 		 
 		ResultSet rs = null;
 
@@ -59,10 +60,17 @@ public class GoToDAOImplementation implements GoToDAOInterface   {
 
 			
 			while(rs.next()) {
+				
+				if(!rs.getString(imePoljaOdredista).equals("00:00:00"))
+				{	
 				Autobus autobus=new Autobus();
 				autobus.setBr_autobusa(rs.getString("BR_AUTOBUSA"));
-				autobus.setVrijeme(rs.getString(imePoljaStanice));
+				autobus.setVrijemeNaTrenutnoj(rs.getString(imePoljaStanice));
+				autobus.setVrijemeNaOdredistu(rs.getString(imePoljaOdredista));
 				autobusi.add(autobus);
+				}
+				
+				
 			}
 				
 				rs.close();

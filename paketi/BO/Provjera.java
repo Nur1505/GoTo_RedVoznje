@@ -41,4 +41,11 @@ public class Provjera {
 		
 		return broj;
 	}
+	public boolean tacnaPutanjaSaStaniceNaStanicu(int brojP, int brojK)
+	{
+		if(((brojP<6)&&(brojP<brojK))||((brojP>=6)&&(brojK<brojP)))
+		{return false;}
+		else {return true;}
+		
+	}
 }

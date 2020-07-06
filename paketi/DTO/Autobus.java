@@ -3,13 +3,14 @@ package DTO;
 public class Autobus {
 	
 	private String br_autobusa;
-	private String vrijeme;
-	
+	private String vrijemeNaTrenutnoj;
+	private String vrijemeNaOdredistu;
 	public Autobus(){}
 	
-	Autobus(String broj, String vrijeme){
+	Autobus(String broj, String vrijemeTr, String vrijemeOdr){
 		broj=this.br_autobusa;
-		vrijeme=this.vrijeme;
+		vrijemeTr=this.vrijemeNaTrenutnoj;
+		vrijemeOdr=this.vrijemeNaOdredistu;
 	}
 	
 
@@ -21,13 +22,22 @@ public class Autobus {
 		this.br_autobusa = broj;
 	}
 
-	public String getVrijeme() {
-		return vrijeme;
+	public String getVrijemeNaTrenutnoj() {
+		return vrijemeNaTrenutnoj;
 	}
 
-	public void setVrijeme(String vrijeme) {
-		this.vrijeme = vrijeme;
+	public void setVrijemeNaTrenutnoj(String vrijemeNaTrenutnoj) {
+		this.vrijemeNaTrenutnoj = vrijemeNaTrenutnoj;
 	}
+
+	public String getVrijemeNaOdredistu() {
+		return vrijemeNaOdredistu;
+	}
+
+	public void setVrijemeNaOdredistu(String vrijemeNaOdredistu) {
+		this.vrijemeNaOdredistu = vrijemeNaOdredistu;
+	}
+
 	
 	
 

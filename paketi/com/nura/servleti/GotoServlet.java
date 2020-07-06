@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import BO.PogodnaVremena;
+
 import BO.Provjera;
 import DAO.GoToDAOImplementation;
 import DTO.Autobus;
@@ -43,18 +43,22 @@ public class GotoServlet extends HttpServlet {
 		 ArrayList<Autobus>autobusi = new  ArrayList<Autobus>();
 		 try {
 			 
-			autobusi= dao.vracaSatniceAutobusaVeceOdTrenutnogVremena(brojTrenutne);
+			autobusi= dao.vracaSatniceAutobusaVeceOdTrenutnogVremena(brojTrenutne,brojOdredista);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 PogodnaVremena pogodnaVremena = new  PogodnaVremena();
-		 
-		 String ispis= pogodnaVremena.ispisPogodnihAutobusaIVremna(autobusi);
-		 request.setAttribute("autobusi", ispis);
+		 boolean tacnaPutanja=provjera.tacnaPutanjaSaStaniceNaStanicu(brojTrenutne, brojOdredista);
+		 request.setAttribute("autobusi", autobusi);
 		 ServletContext context = getServletContext();
-         RequestDispatcher dispatcher = context.getRequestDispatcher("/tabele.jsp");
+		 
+         RequestDispatcher dispatcher ;
+         dispatcher = context.getRequestDispatcher("/tabele.jsp");
+         if(tacnaPutanja==true)
+         { 
+         dispatcher = context.getRequestDispatcher("/tabele.jsp");}
+         else {dispatcher = context.getRequestDispatcher("/greska.jsp");}
          dispatcher.forward(request, response);
 	}
 
