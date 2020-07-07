@@ -58,9 +58,9 @@ background: linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214,
           <nav class="nav-menu d-none d-lg-block">
             <ul>
               <li><a href="index.jsp">Home</a></li>
-              <li><a class="disabled" href=" #about">About</a></li>
-              <li><a href="#services">Mape</a></li>
-              <li><a href="#contact">Proslijedi stanicu</a></li>
+              <li><a >About</a></li>
+              <li><a >Mape</a></li>
+              <li><a >Proslijedi stanicu</a></li>
 
             </ul>
           </nav>
@@ -103,8 +103,8 @@ background: linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214,
     <thead>
       <tr>
         <th>Broj autobusa</th>
-        <th>Vrijeme dolaska</th>
-        <th>Dan</th>
+        <th>Vrijeme dolaska na vasu stanicu</th>
+        <th>Vrijeme stizanja na odrediste</th>
       </tr>
     </thead>
     <tbody>
@@ -115,7 +115,7 @@ background: linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214,
 		{%>  <tr>
         <td><%out.println(autobusi.get(i).getBr_autobusa());%></td>
         <td><%out.println(autobusi.get(i).getVrijemeNaTrenutnoj());%></td>
-        <td></td>
+        <td><%out.println(autobusi.get(i).getVrijemeNaOdredistu());%></td>
       </tr>
  		<%}%>
  	
